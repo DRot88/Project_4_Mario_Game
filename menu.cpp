@@ -1,4 +1,5 @@
 #include "menu.hpp"
+#include "game.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <limits>
@@ -29,6 +30,8 @@ void Menu::displayMenu() {
     switch(choice) {
       case 1 : {
           cout << "Time to play game :P" << endl;
+          Game newGame;
+          newGame.playGame();
           cin.clear();
           cin.ignore(numeric_limits<streamsize>::max(), '\n');
           break;

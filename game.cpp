@@ -9,5 +9,6 @@ Game::Game() {
 }
 
 void Game::playGame() {
+  // marioPtr->attack();
   return;
 }

@@ -2,6 +2,8 @@
 #include "game.hpp"
 #include "character.hpp"
 #include "mario.hpp"
+#include "atrium.hpp"
+#include "space.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -13,8 +15,10 @@ int main() {
   srand(time(0));
   Menu gameMenu;
   // gameMenu.displayMenu();
-  Mario mario;
+  Atrium a;
+  a.printBoard();
+  // Mario mario;
   // mario.defend(5);
-  mario.attack();
+  // mario.attack();
   return 0;
 }
