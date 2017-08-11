@@ -6,7 +6,7 @@ Character::Character() {}
 Character::~Character() {}
 
 /****************************************************************
-** Function: lowerStrengthPoints(int damageTaken)
+** Function: lowerHealth(int damageTaken)
 ** Description: This function will lower the health of the
                 Characters until there is no health remaining.
 ****************************************************************/

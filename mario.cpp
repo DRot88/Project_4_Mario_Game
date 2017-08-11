@@ -6,21 +6,38 @@ using std::endl;
 
 Mario::Mario() {
   armor = 0;
-  health = 10;
+  health = 100;
 }
 
 Mario::~Mario() {}
 
 /****************************************************************
 ** Function: Mario::attack()
-** Description: Mario will roll 2, 6 sided die, and the
-                result will be returned as the attack.
+** Description: Mario will roll 1, 10 sided die, and the
+                result will be returned as the attack. Each 
+                additional jump attack can result in at most 5 more
+                attack points.
 ****************************************************************/
 
 int Mario::attack() {
-  int dice1 = (rand() % 6) + 1;
-  int dice2 = (rand() % 6) + 1;
-  attackTotal = dice1 + dice2;
+  int dice = (rand() % 10) + 1;
+  attackTotal = dice;
+  cout << "\nMario showed off his signature jump attack! ";
+  cout << "The jump caused " << dice << " damage points!" << endl;
+  if (doubleJump()) {
+    int dice2 = (rand() % 5) + 1;
+    attackTotal += dice2;
+    cout << "Wow! Mario has whipped out his double jump! ";
+    cout << "This caused an extra " << dice2 << " damage points!" << endl;
+    if (tripleJump()) {
+      int dice3 = (rand() % 5) + 1;
+      attackTotal += dice3;
+      cout << "Amazing!!! Mario used his legendary triple jump! ";
+      cout << "This caused an extra " << dice3 << " damage points!" << endl;
+    }
+    cout << "Mario has caused " << attackTotal << " total damge points!" << endl;
+  }
+  cout << endl;
   return attackTotal;
 }
 
@@ -61,6 +78,22 @@ int Mario::defend(int damageReceived) {
 bool Mario::evade() {
   int dice1 = (rand() % 4) + 1;
   if (dice1 == 1){
+    return true;
+  }
+  return false;
+}
+
+bool Mario::doubleJump() {
+  int jumpAgain = (rand() % 2) + 1;
+  if (jumpAgain == 1) {
+    return true;
+  }
+  return false;
+}
+
+bool Mario::tripleJump() {
+  int jumpAgain = (rand() % 3) + 1;
+  if (jumpAgain == 1) {
     return true;
   }
   return false;

@@ -13,7 +13,8 @@ int main() {
   srand(time(0));
   Menu gameMenu;
   // gameMenu.displayMenu();
-  // Mario mario;
+  Mario mario;
   // mario.defend(5);
+  mario.attack();
   return 0;
 }

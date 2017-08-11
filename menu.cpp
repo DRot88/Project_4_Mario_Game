@@ -15,7 +15,7 @@ Menu::Menu() {
 /****************************************************************
 ** Function: displayMenu
 ** Description: This will display the options for the user to 
-                choose from for the queue.
+                choose to start the game or to quit the program.
 ****************************************************************/
 
 void Menu::displayMenu() {
