@@ -22,3 +22,19 @@ void Character::lowerHealth(int damageTaken) {
 int Character::getHealth() {
   return health;
 }
+
+int Character::getRow() {
+  return rowPosition;
+}
+
+int Character::getCol() {
+  return colPosition;
+}
+
+void Character::setRow(int r) {
+  rowPosition = r;
+}
+
+void Character::setCol(int c) {
+  colPosition = c;
+}

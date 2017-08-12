@@ -1,8 +1,11 @@
 #include "atrium.hpp"
+#include <iostream>
 
 Atrium::Atrium() {
   createRoom();
 }
+
+Atrium::~Atrium() {}
 
 void Atrium::createRoom() {
   for (int r = 0; r < rows; r++) {
@@ -16,5 +19,27 @@ void Atrium::createRoom() {
       }
     }
   }
+
+  //create door on left
+  for (int c = 0; c < 2; c++) {
+    board[rows/2][c] = ' ';
+    board[rows/2 + 1][c] = '#';
+    board[rows/2 - 1][c] = '#';
+  }
+
+  //create door on right
+  for (int c = cols - 2; c < cols; c++) {
+    board[rows/2][c] = ' ';
+    board[rows/2 + 1][c] = '#';
+    board[rows/2 - 1][c] = '#';
+  }
+
+  //set Mario's initial position
+  board[marioPtr->getRow()][marioPtr->getCol()] = marioPos;
+
   return;
+}
+
+string Atrium::getName() {
+  return "Atrium";
 }

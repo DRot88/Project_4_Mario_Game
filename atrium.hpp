@@ -7,6 +7,8 @@ private:
   virtual void createRoom(); //2d array
 public:
   Atrium();
+  ~Atrium();
+  virtual string getName();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "space.hpp"
+#include "mario.hpp"
 #include <iostream>
 #include <iomanip>
 using std::cout;
@@ -12,7 +13,8 @@ Space::Space(){
   west = 0;
   rows = 15;
   cols = 15;
-
+  marioPtr = new Mario();
+  marioPos = 'M';
   // dynamically create basic board layout
   board = new char *[rows];
   for (int r = 0; r < rows; r++) {
@@ -29,6 +31,8 @@ Space::~Space(){
     delete [] board[r];
   }
   delete [] board;
+  delete marioPtr;
+  marioPtr = 0;
   north = 0;
   south = 0;
   east = 0;
@@ -41,7 +45,7 @@ Space::~Space(){
 ************************************************************************/
 
 void Space::printBoard() {
-  cout << endl << "Current Room:" << endl << endl;
+  cout << endl << "Current Room: " << this-> getName() << endl << endl;
   cout << setw(3) << " ";
   for (int col = 0; col < cols; col++) {
     cout << setw(2) << col << " ";
@@ -57,5 +61,3 @@ void Space::printBoard() {
   }
   cout << endl;  
 }
-
-

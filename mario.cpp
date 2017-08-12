@@ -7,6 +7,8 @@ using std::endl;
 Mario::Mario() {
   armor = 0;
   health = 100;
+  rowPosition = 14;
+  colPosition = 6;
 }
 
 Mario::~Mario() {}

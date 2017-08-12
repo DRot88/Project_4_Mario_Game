@@ -7,7 +7,7 @@ using std::string;
 
 class Mario : public Character {
   private:
-    
+
   public:
     Mario();
     ~Mario();

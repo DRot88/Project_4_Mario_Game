@@ -14,9 +14,9 @@ using std::endl;
 int main() {
   srand(time(0));
   Menu gameMenu;
-  // gameMenu.displayMenu();
-  Atrium a;
-  a.printBoard();
+  gameMenu.displayMenu();
+  // Atrium a;
+  // a.printBoard();
   // Mario mario;
   // mario.defend(5);
   // mario.attack();
