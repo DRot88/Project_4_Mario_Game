@@ -29,7 +29,6 @@ void Menu::displayMenu() {
     cin >> choice;    
     switch(choice) {
       case 1 : {
-          cout << "Time to play game :P" << endl;
           Game newGame;
           newGame.playGame();
           cin.clear();

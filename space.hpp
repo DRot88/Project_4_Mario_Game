@@ -1,6 +1,7 @@
 #ifndef SPACE_HPP
 #define SPACE_HPP
 #include "character.hpp"
+#include "mario.hpp"
 #include <string>
 using std::string;
 
@@ -11,7 +12,7 @@ protected:
   Space *east;
   Space *west;
   char **board; // to allocate memory for 2d grid
-  Character *marioPtr;
+  Mario *marioPtr;
   char marioPos; // mario's location on map;
   int rows;
   int cols;
@@ -22,8 +23,9 @@ public:
   Space(); //constructor
   virtual ~Space(); //destructor
   void printBoard();
+  void displayGameOptions();
   virtual string getName() = 0;
-  
+  void moveMario();
 };
 
 

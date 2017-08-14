@@ -9,6 +9,7 @@ Mario::Mario() {
   health = 100;
   rowPosition = 14;
   colPosition = 6;
+  stepCount = 0;
 }
 
 Mario::~Mario() {}
@@ -103,4 +104,8 @@ bool Mario::tripleJump() {
 
 string Mario::getType() {
   return "Mario";
+}
+
+void Mario::increaseSteps() {
+  this->stepCount += 1;
 }

@@ -7,7 +7,7 @@ using std::string;
 
 class Mario : public Character {
   private:
-
+    int stepCount;
   public:
     Mario();
     ~Mario();
@@ -17,6 +17,8 @@ class Mario : public Character {
     bool doubleJump(); // if using jump attack, 50% chance of a second roll
     bool tripleJump(); // if double jump, 33% chance of a third roll
     bool evade(); // when defending, mario has 25% chance of evading attack
+    void move();
+    void increaseSteps();
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "mario.hpp"
+#include "space.hpp"
 
 
 Game::Game() {
@@ -17,6 +18,10 @@ Game::~Game() {
 
 void Game::playGame() {
   gameBoard->printBoard();
+  gameBoard->displayGameOptions();
+  gameBoard->moveMario();
+  gameBoard->printBoard();
+
   // gameBoard->board[marioPtr->getRow()][marioPtr->getCol()] = marioPosition;
   // gameBoard->printBoard();
 
