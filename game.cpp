@@ -1,6 +1,9 @@
 #include "game.hpp"
 #include "mario.hpp"
 #include "space.hpp"
+#include <iostream>
+using std::cout;
+using std::endl;
 
 
 Game::Game() {
@@ -23,10 +26,14 @@ void Game::playGame() {
     gameBoard->moveMario();
   }
 
-  // gameBoard->board[marioPtr->getRow()][marioPtr->getCol()] = marioPosition;
-  // gameBoard->printBoard();
+  if (gameBoard->getGameStatus() == WIN) {
+    cout << "\nCONGRATULATIONS!! YOU SAVED PRINCESS PEACH!" << endl;
+  }
 
+  if (gameBoard->getGameStatus() == GAME_OVER) {
+    cout << "\nPrincess Peach has met her fate and has passed away.." << endl;
+    cout << "Game Over" << endl;
+  }
 
-  // marioPtr->attack();
   return;
 }

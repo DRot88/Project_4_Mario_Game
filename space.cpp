@@ -117,9 +117,17 @@ void Space::moveMario() {
     marioPtr->setRow(marioPtr->getRow() - 1); // set new position for mario
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
-    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+    if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
+      board[lastRow][lastCol] = '|'; // set prior position back to original state
+    }
+
+    if (lastRow == 0 || lastRow == rows - 1) {// if first or last row
       board[lastRow][lastCol] = '-'; // set prior position back to original state
-    } 
+    }
+
+    if (lastRow != 0 && lastRow != rows -1 && lastCol != 0 && lastCol != cols - 1) {
+      board[lastRow][lastCol] = '.'; // if not first/last row/col set back to '.'
+    }
   }
 
   if (userInput == 'H') { // move west
@@ -128,9 +136,17 @@ void Space::moveMario() {
     marioPtr->setCol(marioPtr->getCol() - 1); // set new position for mario
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
-    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+    if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
+      board[lastRow][lastCol] = '|'; // set prior position back to original state
+    }
+
+    if (lastRow == 0 || lastRow == rows - 1) {// if first or last row
       board[lastRow][lastCol] = '-'; // set prior position back to original state
-    } 
+    }
+
+    if (lastRow != 0 && lastRow != rows -1 && lastCol != 0 && lastCol != cols - 1) {
+      board[lastRow][lastCol] = '.'; // if not first/last row/col set back to '.'
+    }
   }
 
   if (userInput == 'J') { // move south
@@ -139,9 +155,17 @@ void Space::moveMario() {
     marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
-    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+    if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
+      board[lastRow][lastCol] = '|'; // set prior position back to original state
+    }
+
+    if (lastRow == 0 || lastRow == rows - 1) {// if first or last row
       board[lastRow][lastCol] = '-'; // set prior position back to original state
-    } 
+    }
+
+    if (lastRow != 0 && lastRow != rows -1 && lastCol != 0 && lastCol != cols - 1) {
+      board[lastRow][lastCol] = '.'; // if not first/last row/col set back to '.'
+    }
   }
 
   if (userInput == 'K') { // move east
@@ -150,9 +174,17 @@ void Space::moveMario() {
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
-    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+    if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
+      board[lastRow][lastCol] = '|'; // set prior position back to original state
+    }
+
+    if (lastRow == 0 || lastRow == rows - 1) {// if first or last row
       board[lastRow][lastCol] = '-'; // set prior position back to original state
-    } 
+    }
+
+    if (lastRow != 0 && lastRow != rows -1 && lastCol != 0 && lastCol != cols - 1) {
+      board[lastRow][lastCol] = '.'; // if not first/last row/col set back to '.'
+    }
   }
 
   if (userInput == 'X') { // X to quit game
