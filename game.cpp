@@ -17,10 +17,11 @@ Game::~Game() {
 }
 
 void Game::playGame() {
-  gameBoard->printBoard();
-  gameBoard->displayGameOptions();
-  gameBoard->moveMario();
-  gameBoard->printBoard();
+  while (gameBoard->getGameStatus() == UNFINISHED) {
+    gameBoard->printBoard();
+    gameBoard->displayGameOptions();
+    gameBoard->moveMario();
+  }
 
   // gameBoard->board[marioPtr->getRow()][marioPtr->getCol()] = marioPosition;
   // gameBoard->printBoard();

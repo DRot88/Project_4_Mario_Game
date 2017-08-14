@@ -5,6 +5,8 @@
 #include <string>
 using std::string;
 
+enum Status {WIN, GAME_OVER, UNFINISHED};
+
 class Space {
 protected:
   Space *north;
@@ -17,6 +19,7 @@ protected:
   int rows;
   int cols;
   bool canEnter; // changes depending on room
+  Status gameStatus;
   virtual void createRoom() = 0; // every room has a different layout
 
 public:
@@ -26,6 +29,7 @@ public:
   void displayGameOptions();
   virtual string getName() = 0;
   void moveMario();
+  Status getGameStatus();
 };
 
 

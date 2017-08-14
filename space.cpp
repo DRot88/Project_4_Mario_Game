@@ -28,6 +28,8 @@ Space::Space(){
     board[r] = new char[cols];
   }
 
+  gameStatus = UNFINISHED;
+
 }
 
 /************************************************************************
@@ -69,6 +71,13 @@ void Space::printBoard() {
   cout << endl;  
 }
 
+/************************************************************************
+** Function: displayGameOptions()
+** Description: Function that displays the options for the player to
+                choose. This includes directions for Mario, and the
+                ability to exit
+************************************************************************/
+
 void Space::displayGameOptions() {
   cout << "*************************************************" << endl;
   cout << "*                  Game Options                 *" << endl;
@@ -77,6 +86,17 @@ void Space::displayGameOptions() {
   cout << "     'J' = Move South, 'K' = Move East" << endl << endl;
   cout << "           'X' = Exit the Game        " << endl;
   cout << endl;
+}
+
+/************************************************************************
+** Function: getGameStatus()
+** Description: Function that displays the current status of the game.
+                Until the player has GAME_OVER or WIN, the status
+                will remain UNFINISHED
+************************************************************************/
+
+Status Space::getGameStatus() {
+  return gameStatus;
 }
 
 /*********************************************************************
@@ -135,7 +155,7 @@ void Space::moveMario() {
     } 
   }
 
-  if (userInput == 'X') {
+  if (userInput == 'X') { // X to quit game
     cout << "\nExiting Game" << endl << endl;
     exit(0);
   }        
