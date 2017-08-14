@@ -91,10 +91,54 @@ void Space::moveMario() {
   cout << "Please enter your move from the options above: ";
   getChar(userInput, 'U', 'H', 'J', 'K', 'X'); // Movements allowed (X,H,J,K) or exit the game (X)
 
-  if (userInput == 'U') {
-    marioPtr->setRow(marioPtr->getRow() - 1);
-    board[marioPtr->getRow()][marioPtr->getCol()] = MARIO;
+  if (userInput == 'U') { // move north
+    int lastRow = marioPtr->getRow(); // get marios last row 
+    int lastCol = marioPtr->getCol(); // get marios last column
+    marioPtr->setRow(marioPtr->getRow() - 1); // set new position for mario
+    board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
+
+    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+      board[lastRow][lastCol] = '-'; // set prior position back to original state
+    } 
   }
+
+  if (userInput == 'H') { // move west
+    int lastRow = marioPtr->getRow(); // get marios last row 
+    int lastCol = marioPtr->getCol(); // get marios last column
+    marioPtr->setCol(marioPtr->getCol() - 1); // set new position for mario
+    board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
+
+    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+      board[lastRow][lastCol] = '-'; // set prior position back to original state
+    } 
+  }
+
+  if (userInput == 'J') { // move south
+    int lastRow = marioPtr->getRow(); // get marios last row 
+    int lastCol = marioPtr->getCol(); // get marios last column
+    marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
+    board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
+
+    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+      board[lastRow][lastCol] = '-'; // set prior position back to original state
+    } 
+  }
+
+  if (userInput == 'K') { // move east
+    int lastRow = marioPtr->getRow(); // get marios last row 
+    int lastCol = marioPtr->getCol(); // get marios last column
+    marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario
+    board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
+
+    if (lastRow == 0 || lastRow == cols - 1) {// if row 0 or last row
+      board[lastRow][lastCol] = '-'; // set prior position back to original state
+    } 
+  }
+
+  if (userInput == 'X') {
+    cout << "\nExiting Game" << endl << endl;
+    exit(0);
+  }        
 
   marioPtr->increaseSteps();
 }
