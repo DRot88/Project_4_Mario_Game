@@ -7,6 +7,7 @@
 #include "lava.hpp"
 #include "poison.hpp"
 #include "confusion.hpp"
+#include "dragon.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

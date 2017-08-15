@@ -1,5 +1,7 @@
-#include "confusion.hpp"
+#include "dungeon.hpp"
 #include "validations.hpp"
+#include "character.hpp"
+#include "bowser.hpp"
 #include <iostream>
 #include <iomanip>
 using std::cout;
@@ -10,16 +12,18 @@ using std::getline;
 
 const char DOOR = '#'; // Door on map to be marked with '#'
 const char MARIO = 'M'; // Mario's position to be marked with 'M'
+const char BOWSER = 'B'; // Bowser's position to be marked with 'B'
 
-ConfusionRoom::ConfusionRoom() {
-  marioPtr->setCol(cols-1);
-  marioPtr->setRow(7);
+Dungeon::Dungeon() {
+  bowserPtr = new Bowser();
+  marioPtr->setCol(cols/2);
+  marioPtr->setRow(0);
   createRoom();
 }
 
-ConfusionRoom::~ConfusionRoom() {}
+Dungeon::~Dungeon() {}
 
-void ConfusionRoom::createRoom() {
+void Dungeon::createRoom() {
   for (int r = 0; r < rows; r++) {
     for (int c = 0; c < cols; c++) {
       if (r == 0 || r == rows - 1) {
@@ -32,11 +36,11 @@ void ConfusionRoom::createRoom() {
     }
   }
 
-  //create door to west
-  for (int c = 0; c < 2; c++) {
-    board[rows/2][c] = ' ';
-    board[rows/2 + 1][c] =  DOOR;
-    board[rows/2 - 1][c] = DOOR;
+  //create door to north
+  for (int r = 0; r < 2; r++) {
+    board[r][cols/2] = ' ';
+    board[r][cols/2 + 1] = DOOR;
+    board[r][cols/2 - 1] = DOOR;
   }
 
   //create door to east
@@ -49,14 +53,17 @@ void ConfusionRoom::createRoom() {
   //set Mario's initial position
   board[marioPtr->getRow()][marioPtr->getCol()] = marioPos;
 
+  //set Bowsers's position
+  board[bowserPtr->getRow()][bowserPtr->getCol()] = BOWSER;
+
   return;
 }
 
-string ConfusionRoom::getName() {
-  return "Confusion Room";
+string Dungeon::getName() {
+  return "Dungeon ";
 }
 
-void ConfusionRoom::moveMario() {
+void Dungeon::moveMario() {
   char userInput;
   cout << "Please enter your move from the options above: ";
   getChar(userInput, 'U', 'H', 'J', 'K', 'X'); // Movements allowed (X,H,J,K) or exit the game (X)
@@ -65,11 +72,6 @@ void ConfusionRoom::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == 0) {
-      if (marioPtr->getCol() == cols/2) {
-        cout << "Mario has moved into the Posion room!" << endl;
-        gameStatus = CONFUSION;
-        return;        
-      }
       cout << "Mario walked into a wall!";
       return;
     }    
@@ -94,8 +96,8 @@ void ConfusionRoom::moveMario() {
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == 0) {
       if (marioPtr->getRow() == rows/2 ) {
-        cout << "Mario has moved into the Dragons Lair!" << endl;
-        gameStatus = DRAGON;
+        cout << "Mario has moved into the Confusion !";
+        gameStatus = CONFUSION;
         return;
       } else {
         cout << "Mario walked into a wall!";
@@ -122,8 +124,14 @@ void ConfusionRoom::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == rows - 1) {
-      cout << "Mario walked into a wall!";
+      if (marioPtr->getCol() == cols/2) {
+      cout << "Mario has reached the Dungeon!!! The Princess is in a cell nearby!";
+      gameStatus = DUNGEON;
       return;
+      } else {
+        cout << "Mario walked into a wall!";
+        return;        
+      }
     }    
     marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
@@ -145,12 +153,10 @@ void ConfusionRoom::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == cols - 1) {
-      if (marioPtr->getRow() == rows/2 ) {
-        cout << "The door has locked behind him, no turning back!";
-        return;
-      } else {
-        cout << "Mario walked into a wall!";        
+      if (marioPtr->getRow() == rows - 1) {
+      cout << "The door has locked behind him, no turning back!";
       }
+      cout << "Mario walked into a wall!";
       return;
     }
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario

@@ -5,7 +5,6 @@
 const char DOOR = '#'; // Door on map to be marked with '#'
 
 Atrium::Atrium() {
-  east = new LavaRoom();
   createRoom();
 }
 

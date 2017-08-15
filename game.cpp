@@ -4,6 +4,8 @@
 #include "lava.hpp"
 #include "poison.hpp"
 #include "confusion.hpp"
+#include "dragon.hpp"
+#include "dungeon.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -60,7 +62,29 @@ void Game::playGame() {
     gameBoard->printBoard();
     gameBoard->displayGameOptions();
     gameBoard->moveMario();
-  }    
+  }   
+
+  if (gameBoard->getGameStatus() == DRAGON) {
+    gameBoard = new DragonRoom();
+    gameBoard->setGameStatus(DRAGON);
+  }
+
+  while (gameBoard->getGameStatus() == DRAGON) {
+    gameBoard->printBoard();
+    gameBoard->displayGameOptions();
+    gameBoard->moveMario();
+  }
+
+  if (gameBoard->getGameStatus() == DUNGEON) {
+    gameBoard = new Dungeon();
+    gameBoard->setGameStatus(DUNGEON);
+  }
+
+  while (gameBoard->getGameStatus() == DUNGEON) {
+    gameBoard->printBoard();
+    gameBoard->displayGameOptions();
+    gameBoard->moveMario();
+  }              
 
   if (gameBoard->getGameStatus() == WIN) {
     cout << "\nCONGRATULATIONS!! YOU SAVED PRINCESS PEACH!" << endl;

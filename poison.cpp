@@ -63,11 +63,6 @@ void PoisonRoom::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == 0) {
-      if (marioPtr->getCol() == cols/2) {
-        cout << "Mario has moved into the Posion room!" << endl;
-        gameStatus = POISON;
-        return;        
-      }
       cout << "Mario walked into a wall!";
       return;
     }    
