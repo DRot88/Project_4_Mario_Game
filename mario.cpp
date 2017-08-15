@@ -8,7 +8,7 @@ Mario::Mario() {
   armor = 0;
   health = 100;
   rowPosition = 14;
-  colPosition = 6;
+  colPosition = 7;
   stepCount = 0;
 }
 

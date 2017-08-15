@@ -5,7 +5,7 @@
 #include <string>
 using std::string;
 
-enum Status {WIN, GAME_OVER, UNFINISHED};
+enum Status {ATRIUM, LAVA, POISON, CONFUSION, DRAGON, DUNGEON, GAME_OVER, WIN};
 
 class Space {
 protected:
@@ -28,8 +28,9 @@ public:
   void printBoard();
   void displayGameOptions();
   virtual string getName() = 0;
-  void moveMario();
+  virtual void moveMario();
   Status getGameStatus();
+  void setGameStatus(Status s);
 };
 
 

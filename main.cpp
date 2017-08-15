@@ -4,6 +4,7 @@
 #include "mario.hpp"
 #include "atrium.hpp"
 #include "space.hpp"
+#include "lava.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

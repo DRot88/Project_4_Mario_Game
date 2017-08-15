@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include "mario.hpp"
 #include "space.hpp"
+#include "lava.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -20,11 +21,22 @@ Game::~Game() {
 }
 
 void Game::playGame() {
-  while (gameBoard->getGameStatus() == UNFINISHED) {
+  while (gameBoard->getGameStatus() == ATRIUM) {
     gameBoard->printBoard();
     gameBoard->displayGameOptions();
     gameBoard->moveMario();
   }
+
+  if (gameBoard->getGameStatus() == LAVA) {
+    gameBoard = new LavaRoom();
+    gameBoard->setGameStatus(LAVA);
+  }
+
+  while (gameBoard->getGameStatus() == LAVA) {
+    gameBoard->printBoard();
+    gameBoard->displayGameOptions();
+    gameBoard->moveMario();
+  }  
 
   if (gameBoard->getGameStatus() == WIN) {
     cout << "\nCONGRATULATIONS!! YOU SAVED PRINCESS PEACH!" << endl;
