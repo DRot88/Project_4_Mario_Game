@@ -3,6 +3,7 @@
 #include "character.hpp"
 #include "space.hpp"
 #include "atrium.hpp"
+#include "poison.hpp"
 
 class Game {
 private:

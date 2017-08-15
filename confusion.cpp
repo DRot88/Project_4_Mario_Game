@@ -1,4 +1,4 @@
-#include "lava.hpp"
+#include "confusion.hpp"
 #include "validations.hpp"
 #include <iostream>
 #include <iomanip>
@@ -11,15 +11,15 @@ using std::getline;
 const char DOOR = '#'; // Door on map to be marked with '#'
 const char MARIO = 'M'; // Mario's position to be marked with 'M'
 
-LavaRoom::LavaRoom() {
-  marioPtr->setCol(0);
+ConfusionRoom::ConfusionRoom() {
+  marioPtr->setCol(cols-1);
   marioPtr->setRow(7);
   createRoom();
 }
 
-LavaRoom::~LavaRoom() {}
+ConfusionRoom::~ConfusionRoom() {}
 
-void LavaRoom::createRoom() {
+void ConfusionRoom::createRoom() {
   for (int r = 0; r < rows; r++) {
     for (int c = 0; c < cols; c++) {
       if (r == 0 || r == rows - 1) {
@@ -39,11 +39,11 @@ void LavaRoom::createRoom() {
     board[rows/2 - 1][c] = DOOR;
   }
 
-  //create door to north
-  for (int r = 0; r < 2; r++) {
-    board[r][cols/2] = ' ';
-    board[r][cols/2 + 1] = DOOR;
-    board[r][cols/2 - 1] = DOOR;
+  //create door to east
+  for (int c = cols - 2 ; c < cols; c++) {
+    board[rows/2][c] = ' ';
+    board[rows/2 + 1][c] =  DOOR;
+    board[rows/2 - 1][c] = DOOR;
   }
 
   //set Mario's initial position
@@ -52,11 +52,11 @@ void LavaRoom::createRoom() {
   return;
 }
 
-string LavaRoom::getName() {
-  return "Lava Room";
+string ConfusionRoom::getName() {
+  return "Confusion Room";
 }
 
-void LavaRoom::moveMario() {
+void ConfusionRoom::moveMario() {
   char userInput;
   cout << "Please enter your move from the options above: ";
   getChar(userInput, 'U', 'H', 'J', 'K', 'X'); // Movements allowed (X,H,J,K) or exit the game (X)
@@ -67,7 +67,7 @@ void LavaRoom::moveMario() {
     if (marioPtr->getRow() == 0) {
       if (marioPtr->getCol() == cols/2) {
         cout << "Mario has moved into the Posion room!" << endl;
-        gameStatus = POISON;
+        gameStatus = CONFUSION;
         return;        
       }
       cout << "Mario walked into a wall!";
@@ -94,7 +94,7 @@ void LavaRoom::moveMario() {
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == 0) {
       if (marioPtr->getRow() == rows/2 ) {
-        cout << "The door has locked behind him, no turning back!";
+        cout << "Mario can not move into the dungeon!";
         return;
       } else {
         cout << "Mario walked into a wall!";
@@ -144,7 +144,12 @@ void LavaRoom::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == cols - 1) {
-      cout << "Mario walked into a wall!";
+      if (marioPtr->getRow() == rows/2 ) {
+        cout << "The door has locked behind him, no turning back!";
+        return;
+      } else {
+        cout << "Mario walked into a wall!";        
+      }
       return;
     }
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario

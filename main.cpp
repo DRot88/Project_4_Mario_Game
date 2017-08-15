@@ -5,6 +5,8 @@
 #include "atrium.hpp"
 #include "space.hpp"
 #include "lava.hpp"
+#include "poison.hpp"
+#include "confusion.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

@@ -2,6 +2,8 @@
 #include "mario.hpp"
 #include "space.hpp"
 #include "lava.hpp"
+#include "poison.hpp"
+#include "confusion.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -37,6 +39,28 @@ void Game::playGame() {
     gameBoard->displayGameOptions();
     gameBoard->moveMario();
   }  
+
+  if (gameBoard->getGameStatus() == POISON) {
+    gameBoard = new PoisonRoom();
+    gameBoard->setGameStatus(POISON);
+  }
+
+  while (gameBoard->getGameStatus() == POISON) {
+    gameBoard->printBoard();
+    gameBoard->displayGameOptions();
+    gameBoard->moveMario();
+  }    
+
+  if (gameBoard->getGameStatus() == CONFUSION) {
+    gameBoard = new ConfusionRoom();
+    gameBoard->setGameStatus(CONFUSION);
+  }
+
+  while (gameBoard->getGameStatus() == CONFUSION) {
+    gameBoard->printBoard();
+    gameBoard->displayGameOptions();
+    gameBoard->moveMario();
+  }    
 
   if (gameBoard->getGameStatus() == WIN) {
     cout << "\nCONGRATULATIONS!! YOU SAVED PRINCESS PEACH!" << endl;
