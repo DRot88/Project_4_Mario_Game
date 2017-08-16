@@ -5,6 +5,7 @@
 class PoisonRoom : public Space {
 private:
   virtual void createRoom(); //2d array
+  int stepsRemaining;
 public:
   PoisonRoom();
   ~PoisonRoom();

@@ -11,9 +11,11 @@ using std::getline;
 
 const char DOOR = '#'; // Door on map to be marked with '#'
 const char MARIO = 'M'; // Mario's position to be marked with 'M'
+const char POISONGAS = 'P'; //Position position to be marked with 'P'
 
 PoisonRoom::PoisonRoom() {
   createRoom();
+  stepsRemaining = 25;
 }
 
 PoisonRoom::~PoisonRoom() {}
@@ -48,6 +50,13 @@ void PoisonRoom::createRoom() {
   //set Mario's initial position
   board[marioPtr->getRow()][marioPtr->getCol()] = marioPos;
 
+  //set random poison positions;
+  for (int x = 0; x < 50; x++) {
+    int r = (rand() % 10) + 2;
+    int c = (rand() % 11) + 4;
+    board[r][c] = POISONGAS;
+  }  
+
   return;
 }
 
@@ -56,6 +65,9 @@ string PoisonRoom::getName() {
 }
 
 void PoisonRoom::moveMario() {
+
+  cout << "Steps Remaining: " << stepsRemaining << endl;
+
   char userInput;
   cout << "Please enter your move from the options above: ";
   getChar(userInput, 'U', 'H', 'J', 'K', 'X'); // Movements allowed (X,H,J,K) or exit the game (X)
@@ -68,6 +80,16 @@ void PoisonRoom::moveMario() {
       return;
     }    
     marioPtr->setRow(marioPtr->getRow() - 1); // set new position for mario
+    
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == POISONGAS) { // decrease health if stepped into poison cloud
+      marioPtr->lowerHealth(20);
+      cout << "Mario has lost 20 health for choking on a poison cloud.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nMario has choked to death!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      } 
+    }   
+   
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
@@ -97,6 +119,16 @@ void PoisonRoom::moveMario() {
       }
     }    
     marioPtr->setCol(marioPtr->getCol() - 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == POISONGAS) { // decrease health if stepped into poison cloud
+      marioPtr->lowerHealth(20);
+      cout << "Mario has lost 20 health for choking on a poison cloud.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nMario has choked to death!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      } 
+    }   
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
@@ -125,6 +157,16 @@ void PoisonRoom::moveMario() {
       }
     }    
     marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == POISONGAS) { // decrease health if stepped into poison cloud
+      marioPtr->lowerHealth(20);
+      cout << "Mario has lost 20 health for choking on a poison cloud.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nMario has choked to death!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      } 
+    } 
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
@@ -148,6 +190,16 @@ void PoisonRoom::moveMario() {
       return;
     }
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == POISONGAS) { // decrease health if stepped into poison cloud
+      marioPtr->lowerHealth(20);
+      cout << "Mario has lost 20 health for choking on a poison cloud.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nMario has choked to death!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      } 
+    } 
+    
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
       board[lastRow][lastCol] = '|'; // set prior position back to original state
@@ -164,6 +216,15 @@ void PoisonRoom::moveMario() {
 
   if (userInput == 'X') { // X to quit game
     cout << "\nExiting Game" << endl << endl;
+    exit(0);
+  }
+
+  //decrease reallowable steps before 'death'
+  stepsRemaining--;
+  if (stepsRemaining == 0) {
+    cout << "\nMario has been trapped for too long in the poison room and has died.";
+    cout << "\nThe Princess will forever be lost in Bowsers Dungeon.";
+    cout << "\n\nGAME OVER" << endl << endl;
     exit(0);
   }
 }

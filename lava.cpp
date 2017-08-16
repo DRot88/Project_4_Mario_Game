@@ -86,8 +86,8 @@ void LavaRoom::moveMario() {
     marioPtr->setRow(marioPtr->getRow() - 1); // set new position for mario
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
-      marioPtr->lowerHealth(5);
-      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      marioPtr->lowerHealth(10);
+      cout << "Mario has lost 10 health for stepping on a fire pit.";
       if (marioPtr->getHealth() == 0) {
         cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
         exit(0);
@@ -124,8 +124,8 @@ void LavaRoom::moveMario() {
     marioPtr->setCol(marioPtr->getCol() - 1); // set new position for mario
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
-      marioPtr->lowerHealth(5);
-      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      marioPtr->lowerHealth(10);
+      cout << "Mario has lost 10 health for stepping on a fire pit.";
       if (marioPtr->getHealth() == 0) {
         cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
         exit(0);
@@ -157,8 +157,8 @@ void LavaRoom::moveMario() {
     marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
-      marioPtr->lowerHealth(5);
-      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      marioPtr->lowerHealth(10);
+      cout << "Mario has lost 10 health for stepping on a fire pit.";
       if (marioPtr->getHealth() == 0) {
         cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
         exit(0);
@@ -190,8 +190,8 @@ void LavaRoom::moveMario() {
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
-      marioPtr->lowerHealth(5);
-      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      marioPtr->lowerHealth(10);
+      cout << "Mario has lost 10 health for stepping on a fire pit.";
       if (marioPtr->getHealth() == 0) {
         cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
         exit(0);
