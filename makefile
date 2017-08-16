@@ -10,7 +10,7 @@ CC = g++
 STD = -std=c++11
 CFLAGS = -c -g -Wall
 SOURCES = main.cpp menu.cpp game.cpp character.cpp mario.cpp space.cpp atrium.cpp validations.cpp lava.cpp
-SOURCES += poison.cpp confusion.cpp dragon.cpp dungeon.cpp bowser.cpp
+SOURCES += poison.cpp confusion.cpp dragon.cpp dungeon.cpp bowser.cpp peach.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = finalProject
 

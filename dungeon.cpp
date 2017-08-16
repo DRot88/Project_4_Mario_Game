@@ -4,6 +4,7 @@
 #include "bowser.hpp"
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -13,9 +14,12 @@ using std::getline;
 const char DOOR = '#'; // Door on map to be marked with '#'
 const char MARIO = 'M'; // Mario's position to be marked with 'M'
 const char BOWSER = 'B'; // Bowser's position to be marked with 'B'
+const char PEACH = 'P'; // Bowser's position to be marked with 'B'
+const char PRISON = '#'; // Prison Doors for Peach to be trapped it
 
 Dungeon::Dungeon() {
   bowserPtr = new Bowser();
+  peachPtr = new PrincessPeach();
   marioPtr->setCol(cols/2);
   marioPtr->setRow(0);
   createRoom();
@@ -55,6 +59,19 @@ void Dungeon::createRoom() {
 
   //set Bowsers's position
   board[bowserPtr->getRow()][bowserPtr->getCol()] = BOWSER;
+
+  //create prison cell
+  for (int r = 11; r < 14; r++) {
+    for (int c = 2; c < 5; c++) {
+      board[r][c] = PRISON;
+    }
+  }
+
+  //set Peach's position
+  board[peachPtr->getRow()][peachPtr->getCol()] = PEACH;
+
+
+
 
   return;
 }

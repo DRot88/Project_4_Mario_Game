@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
+#include <cstdlib>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -88,6 +89,24 @@ void Space::displayGameOptions() {
   cout << "     'U' = Move North, 'H' = Move West" << endl;
   cout << "     'J' = Move South, 'K' = Move East" << endl << endl;
   cout << "           'X' = Exit the Game        " << endl;
+  cout << endl;
+}
+
+/************************************************************************
+** Function: displayConfusedOptions()
+** Description: Function that displays the options for the player to
+                choose inside the Confusion Room. These are not the 
+                correct movements and the player will have to figure
+                it out.
+************************************************************************/
+
+void Space::displayConfusedOptions() {
+  cout << "*************************************************" << endl;
+  cout << "*              Confused Options                 *" << endl;
+  cout << "*************************************************" << endl << endl;
+  cout << "     'Y' = Move North, 'S' = Move West" << endl;
+  cout << "     'B' = Move South, 'F' = Move East" << endl << endl;
+  cout << "           'T' = Exit the Game        " << endl;
   cout << endl;
 }
 

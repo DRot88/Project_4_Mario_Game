@@ -6,6 +6,7 @@
 #include "confusion.hpp"
 #include "dragon.hpp"
 #include "dungeon.hpp"
+#include "peach.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -15,7 +16,7 @@ Game::Game() {
   // marioPtr = new Mario();
   gameBoard = new Atrium();
 //   bowserPtr = new Bowser();
-//   peachPtr = new PrincessPeach();
+  // peachPtr = new PrincessPeach();
 //   dragonPtr = new Dragon();
 }
 
@@ -60,7 +61,7 @@ void Game::playGame() {
 
   while (gameBoard->getGameStatus() == CONFUSION) {
     gameBoard->printBoard();
-    gameBoard->displayGameOptions();
+    gameBoard->displayConfusedOptions();
     gameBoard->moveMario();
   }   
 

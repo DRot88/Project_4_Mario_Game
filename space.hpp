@@ -27,6 +27,7 @@ public:
   virtual ~Space(); //destructor
   void printBoard();
   void displayGameOptions();
+  void displayConfusedOptions();
   virtual string getName() = 0;
   virtual void moveMario();
   Status getGameStatus();

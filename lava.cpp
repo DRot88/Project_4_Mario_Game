@@ -2,6 +2,7 @@
 #include "validations.hpp"
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 using std::cout;
 using std::cin;
 using std::endl;

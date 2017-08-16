@@ -8,6 +8,7 @@
 #include "poison.hpp"
 #include "confusion.hpp"
 #include "dragon.hpp"
+#include "peach.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
