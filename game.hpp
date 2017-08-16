@@ -16,6 +16,7 @@ public:
   Game();
   ~Game();
   void playGame();
+  void welcomeScreen();
 };
 
 

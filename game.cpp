@@ -7,9 +7,11 @@
 #include "dragon.hpp"
 #include "dungeon.hpp"
 #include "peach.hpp"
+#include "validations.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
+using std::cin;
 
 
 Game::Game() {
@@ -25,7 +27,37 @@ Game::~Game() {
   gameBoard = 0;
 }
 
+void Game::welcomeScreen() {
+  cout << "\nIt was another quiet day in Mushroom Kingdom " << endl;
+  cout << "when a deafening blast shook the Kings Tower." << endl;
+
+  cout << "\nThe famous Mario was sleeping in his bed when " << endl;
+  cout << "the blast woke him suddenly, fearing for the worst." << endl;
+  cout << "Mario had recogized the screams of his bride to be " << endl;
+  cout << "and he scrambled to see what was going on." << endl;
+
+  cout << "\n'MARIO!! MARIO!! HELP ME!!' screamed Princess Peach." << endl;
+
+  cout << "\nMario cause a quick glimpse of the blimp that the princess " << endl;
+  cout << "was being held captive in as his arch nemesis'.. Bowser!" << endl;
+
+  cout << "\nAfter one long and tiring week, Mario has finally tracked " << endl;
+  cout << "the Princess' whereabouts to Bowsers secret fortress." << endl;
+
+  cout << "\nYour goal is to rescue the Princess before she perishes" << endl;
+
+  cout << "\nPress Enter to Continue..";
+
+  string temp;
+  getline(cin, temp);
+  std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+
+}
+
 void Game::playGame() {
+
+  welcomeScreen();
+
   while (gameBoard->getGameStatus() == ATRIUM) {
     gameBoard->printBoard();
     gameBoard->displayGameOptions();
