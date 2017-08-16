@@ -54,6 +54,33 @@ void Game::welcomeScreen() {
 
 }
 
+void Game::dragonMessage() {
+cout << endl << endl << endl;
+cout << "          <>=======()" << endl;
+cout << "           (/\\___   /|\\          ()==========<>_ " << endl;
+cout << "                 \\_/ | \\        //|\\   ______/ \\)" << endl;
+cout << "                   \\_|  \\      // | \\_/" << endl;
+cout << "                     \\|\\/|\\_   //  /\\/" << endl;
+cout << "                      (oo)\\ \\_//  /" << endl;
+cout << "                     //_/\\_\\/ /  |" << endl;
+cout << "                    @@/  |=\\  \\  |" << endl;
+cout << "                        \\_=\\_ \\ |" << endl;
+cout << "                           \\==\\ \\|\\" << endl;
+cout << "                        __(\\===\\(  )\\" << endl;
+cout << "                       (((~) __(_/   |" << endl;
+cout << "                            (((~) \\  /" << endl;
+cout << "                            ______/ /" << endl;
+cout << "                            '------'" << endl << endl;
+cout << "There is an evil dragon gaurding this room. You must find the flute" << endl;
+cout << "to put the dragon to sleep. Once you play the flute, you can sneak past the dragon." << endl;
+cout << "\nPress Enter to Continue..";
+
+string temp;
+getline(cin, temp);
+std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+
+}
+
 void Game::playGame() {
 
   welcomeScreen();
@@ -101,6 +128,8 @@ void Game::playGame() {
     gameBoard = new DragonRoom();
     gameBoard->setGameStatus(DRAGON);
   }
+
+  dragonMessage();
 
   while (gameBoard->getGameStatus() == DRAGON) {
     gameBoard->printBoard();

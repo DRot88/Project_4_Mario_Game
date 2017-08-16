@@ -102,6 +102,7 @@ void Space::displayGameOptions() {
 ************************************************************************/
 
 void Space::displayConfusedOptions() {
+  cout << "\nMario is confused.. Maybe the below will work.. maybe.." << endl << endl;
   cout << "*************************************************" << endl;
   cout << "*              Confused Options                 *" << endl;
   cout << "*************************************************" << endl << endl;

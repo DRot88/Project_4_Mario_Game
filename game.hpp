@@ -17,6 +17,7 @@ public:
   ~Game();
   void playGame();
   void welcomeScreen();
+  void dragonMessage();
 };
 
 
