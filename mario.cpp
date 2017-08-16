@@ -109,3 +109,14 @@ string Mario::getType() {
 void Mario::increaseSteps() {
   this->stepCount += 1;
 }
+
+void Mario::addToBag(char item) {
+  bag.push_back(item);
+  cout << "\nA " << item << " has been added to Mario's Bag." << endl;
+}
+
+void Mario::displayBag() {
+  cout << "\nBag Contents" << endl;
+  for(int i = 0; i < bag.size(); i++)
+  cout << bag[i] << ' ';
+}

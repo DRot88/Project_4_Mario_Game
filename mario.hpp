@@ -3,11 +3,14 @@
 #include "character.hpp"
 #include <string>
 #include <ctime>
+#include <vector>
 using std::string;
+using std::vector;
 
 class Mario : public Character {
   private:
     int stepCount;
+    vector<char> bag;
   public:
     Mario();
     ~Mario();
@@ -19,6 +22,8 @@ class Mario : public Character {
     bool evade(); // when defending, mario has 25% chance of evading attack
     void move();
     void increaseSteps();
+    void addToBag(char item);
+    void displayBag();
 };
 
 #endif
