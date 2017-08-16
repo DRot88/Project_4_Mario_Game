@@ -62,15 +62,10 @@ void ConfusionRoom::moveMario() {
   cout << "Please enter your move from the options above: ";
   getChar(userInput, 'U', 'H', 'J', 'K', 'X'); // Movements allowed (X,H,J,K) or exit the game (X)
 
-  if (userInput == 'U') { // move north
+  if (userInput == 'J') { // move north
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == 0) {
-      if (marioPtr->getCol() == cols/2) {
-        cout << "Mario has moved into the Posion room!" << endl;
-        gameStatus = CONFUSION;
-        return;        
-      }
       cout << "Mario walked into a wall!";
       return;
     }    
@@ -90,11 +85,12 @@ void ConfusionRoom::moveMario() {
     }
   }
 
-  if (userInput == 'H') { // move west
+  if (userInput == 'K') { // move west
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == 0) {
       if (marioPtr->getRow() == rows/2 ) {
+        cout << "\nAfter a few minutes, Mario's confusion has worn off." << endl;
         cout << "Mario has moved into the Dragons Lair!" << endl;
         gameStatus = DRAGON;
         return;
@@ -119,7 +115,7 @@ void ConfusionRoom::moveMario() {
     }
   }
 
-  if (userInput == 'J') { // move south
+  if (userInput == 'U') { // move south
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == rows - 1) {
@@ -142,7 +138,7 @@ void ConfusionRoom::moveMario() {
     }
   }
 
-  if (userInput == 'K') { // move east
+  if (userInput == 'H') { // move east
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == cols - 1) {

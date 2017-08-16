@@ -110,6 +110,8 @@ void PoisonRoom::moveMario() {
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == 0) {
       if (marioPtr->getRow() == rows/2 ) {
+        cout << "That was a close call! Mario popped his magic mushroom to regain health!" << endl;
+        cout << "Due to the posion, Mario has become confused and he isn't moving normally" << endl;      
         cout << "Mario has moved into the Confusion room!";
         gameStatus = CONFUSION;
         return;
@@ -199,7 +201,7 @@ void PoisonRoom::moveMario() {
         exit(0);
       } 
     } 
-    
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
       board[lastRow][lastCol] = '|'; // set prior position back to original state

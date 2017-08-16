@@ -105,9 +105,9 @@ void Space::displayConfusedOptions() {
   cout << "*************************************************" << endl;
   cout << "*              Confused Options                 *" << endl;
   cout << "*************************************************" << endl << endl;
-  cout << "     'Y' = Move North, 'S' = Move West" << endl;
-  cout << "     'B' = Move South, 'F' = Move East" << endl << endl;
-  cout << "           'T' = Exit the Game        " << endl;
+  cout << "     'Y' = Move North?, 'S' = Move West?" << endl;
+  cout << "     'B' = Move South?, 'F' = Move East?" << endl << endl;
+  cout << "           'T' = Exit the Game??        " << endl;
   cout << endl;
 }
 
