@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 
 Bowser::Bowser() {
-  armor = 5;
+  armor = 4;
   health = 80;
   rowPosition = 7;
   colPosition = 7;
@@ -15,24 +15,24 @@ Bowser::~Bowser() {}
 
 /****************************************************************
 ** Function: Bowser::attack()
-** Description: Bowser will roll 1, 8 sided die, and the
+** Description: Bowser will roll 1, 4 sided die, and the
                 result will be returned as the attack. Each 
-                additional attack can result in at most 6 more
-                attack points.
+                additional attack can result in at most 5 more
+                attack points each
 ****************************************************************/
 
 int Bowser::attack() {
-  int dice = (rand() % 8) + 1;
+  int dice = (rand() % 4) + 1;
   attackTotal = dice;
   cout << "\nBowser used his slash attack! ";
   cout << "The jump caused " << dice << " damage points!" << endl;
   if (shellAttack()) {
-    int dice2 = (rand() % 6) + 1;
+    int dice2 = (rand() % 5) + 1;
     attackTotal += dice2;
     cout << "Wow! Bowser has whipped out his shell attack! ";
     cout << "This caused an extra " << dice2 << " damage points!" << endl;
     if (fireBreath()) {
-      int dice3 = (rand() % 6) + 1;
+      int dice3 = (rand() % 5) + 1;
       attackTotal += dice3;
       cout << "Amazing!!! Bowser used his legendary fire breath! ";
       cout << "This caused an extra " << dice3 << " damage points!" << endl;
@@ -51,7 +51,7 @@ int Bowser::attack() {
 
 int Bowser::defend(int damageReceived) {
   int totalDamage = 0;
-  int dice = (rand() % 8) + 1;
+  int dice = (rand() % 4) + 1;
   defenseTotal = dice + armor;
   cout << "Bowser had a defense of: " << defenseTotal << endl;
   if (defenseTotal >= damageReceived) {

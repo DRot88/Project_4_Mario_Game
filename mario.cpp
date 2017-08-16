@@ -18,8 +18,8 @@ Mario::~Mario() {}
 ** Function: Mario::attack()
 ** Description: Mario will roll 1, 10 sided die, and the
                 result will be returned as the attack. Each 
-                additional jump attack can result in at most 5 more
-                attack points.
+                additional jump attack can result in at most
+                5 (double) or 10 (triple) more attack points.
 ****************************************************************/
 
 int Mario::attack() {
@@ -33,7 +33,7 @@ int Mario::attack() {
     cout << "Wow! Mario has whipped out his double jump! ";
     cout << "This caused an extra " << dice2 << " damage points!" << endl;
     if (tripleJump()) {
-      int dice3 = (rand() % 5) + 1;
+      int dice3 = (rand() % 10) + 1;
       attackTotal += dice3;
       cout << "Amazing!!! Mario used his legendary triple jump! ";
       cout << "This caused an extra " << dice3 << " damage points!" << endl;
@@ -47,7 +47,7 @@ int Mario::attack() {
 /****************************************************************
 ** Function: Mario::defend(int damageReceived)
 ** Description: Marios defense will be based on a roll of a
-                10 sided die. There is a 25% chance that he will
+                8 sided die. There is a 25% chance that he will
                 be able to use the 'evade' technique, in which
                 he will succesfully escape the attack, taking
                 no damage.
@@ -55,7 +55,7 @@ int Mario::attack() {
 
 int Mario::defend(int damageReceived) {
   int totalDamage = 0;
-  int dice = (rand() % 10) + 1;
+  int dice = (rand() % 8) + 1;
   defenseTotal = dice + armor;
   cout << "Mario had a defense of: " << defenseTotal << endl;
   if (defenseTotal >= damageReceived) {
