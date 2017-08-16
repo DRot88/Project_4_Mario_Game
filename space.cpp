@@ -58,7 +58,8 @@ Space::~Space(){
 ************************************************************************/
 
 void Space::printBoard() {
-  cout << endl << "Current Room: " << this-> getName() << endl << endl;
+  cout << endl << "Current Room: " << this-> getName() << endl;
+  cout << "Mario Health: " << marioPtr->getHealth() << endl << endl;
   cout << setw(3) << " ";
   for (int col = 0; col < cols; col++) {
     cout << setw(2) << col << " ";

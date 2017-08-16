@@ -11,6 +11,7 @@ using std::getline;
 
 const char DOOR = '#'; // Door on map to be marked with '#'
 const char MARIO = 'M'; // Mario's position to be marked with 'M'
+const char FIRE = 'F'; // FireLava to be marked with 'F'
 
 LavaRoom::LavaRoom() {
   marioPtr->setCol(0);
@@ -50,6 +51,13 @@ void LavaRoom::createRoom() {
   //set Mario's initial position
   board[marioPtr->getRow()][marioPtr->getCol()] = marioPos;
 
+  //set random fire positions;
+  for (int x = 0; x < 50; x++) {
+    int r = (rand() % 11) + 3;
+    int c = (rand() % 11) + 3;
+    board[r][c] = FIRE;
+  }
+
   return;
 }
 
@@ -67,6 +75,7 @@ void LavaRoom::moveMario() {
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == 0) {
       if (marioPtr->getCol() == cols/2) {
+        cout << "That was a close call! Mario popped his magic mushroom to regain health!" << endl;
         cout << "Mario has moved into the Posion room!" << endl;
         gameStatus = POISON;
         return;        
@@ -75,6 +84,16 @@ void LavaRoom::moveMario() {
       return;
     }    
     marioPtr->setRow(marioPtr->getRow() - 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
+      marioPtr->lowerHealth(5);
+      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      }
+    }
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
@@ -103,6 +122,16 @@ void LavaRoom::moveMario() {
       }
     }    
     marioPtr->setCol(marioPtr->getCol() - 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
+      marioPtr->lowerHealth(5);
+      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      }      
+    }  
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
@@ -126,6 +155,16 @@ void LavaRoom::moveMario() {
       return;
     }    
     marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
+      marioPtr->lowerHealth(5);
+      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      }      
+    }
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
 
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
@@ -149,6 +188,16 @@ void LavaRoom::moveMario() {
       return;
     }
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == FIRE) { // decrease health if stepped into fire
+      marioPtr->lowerHealth(5);
+      cout << "Mario has lost 5 health for stepping on a fire pit.";
+      if (marioPtr->getHealth() == 0) {
+        cout << "\n\nYou have Died!! The Princess will never be saved!" << endl << endl;
+        exit(0);
+      }      
+    }
+
     board[marioPtr->getRow()][marioPtr->getCol()] = MARIO; // place 'M' character at new position to reflect movement
     if (lastCol == 0 || lastCol == cols - 1) { // if first or last column
       board[lastRow][lastCol] = '|'; // set prior position back to original state
