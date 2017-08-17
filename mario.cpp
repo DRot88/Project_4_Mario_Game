@@ -117,6 +117,6 @@ void Mario::addToBag(char item) {
 
 void Mario::displayBag() {
   cout << "\nBag Contents" << endl;
-  for(int i = 0; i < bag.size(); i++)
+  for(std::size_t i = 0; i < bag.size(); i++)
   cout << bag[i] << ' ';
 }

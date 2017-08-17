@@ -5,6 +5,10 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include <cctype>
+#include <limits>
+using std::streamsize;
+using std::numeric_limits;
 using std::cout;
 using std::cin;
 using std::endl;

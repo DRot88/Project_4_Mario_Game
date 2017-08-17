@@ -9,9 +9,14 @@
 #include "peach.hpp"
 #include "validations.hpp"
 #include <iostream>
+#include <limits>
+#include <cctype>
+#include <cstdlib>
 using std::cout;
 using std::endl;
 using std::cin;
+using std::streamsize;
+using std::numeric_limits;
 
 
 Game::Game() {
@@ -35,7 +40,7 @@ void Game::welcomeScreen() {
 
   cout << "\n'MARIO!! MARIO!! HELP ME!!' screamed Princess Peach." << endl;
 
-  cout << "\nMario cause a quick glimpse of the blimp that the princess " << endl;
+  cout << "\nMario caught a quick glimpse of the blimp that the princess " << endl;
   cout << "was being held captive in as his arch nemesis'.. Bowser!" << endl;
 
   cout << "\nAfter one long and tiring week, Mario has finally tracked " << endl;
@@ -111,8 +116,10 @@ void Game::playGame() {
     }
 
     if (gameBoard->getGameStatus() == LAVA) {
+      Space *temp = gameBoard;
       gameBoard = new LavaRoom();
       gameBoard->setGameStatus(LAVA);
+      delete temp;
     }
 
     while (gameBoard->getGameStatus() == LAVA) {
@@ -128,8 +135,10 @@ void Game::playGame() {
     }  
 
     if (gameBoard->getGameStatus() == POISON) {
+      Space *temp = gameBoard;
       gameBoard = new PoisonRoom();
       gameBoard->setGameStatus(POISON);
+      delete temp;
     }
 
     while (gameBoard->getGameStatus() == POISON) {
@@ -145,8 +154,10 @@ void Game::playGame() {
     }    
 
     if (gameBoard->getGameStatus() == CONFUSION) {
+      Space *temp = gameBoard;
       gameBoard = new ConfusionRoom();
       gameBoard->setGameStatus(CONFUSION);
+      delete temp;
     }
 
     while (gameBoard->getGameStatus() == CONFUSION) {
@@ -162,8 +173,10 @@ void Game::playGame() {
     }   
 
     if (gameBoard->getGameStatus() == DRAGON) {
+      Space *temp = gameBoard;
       gameBoard = new DragonRoom();
       gameBoard->setGameStatus(DRAGON);
+      delete temp;
     }
     if (princessHealth > 0) {
       dragonMessage();
@@ -182,8 +195,10 @@ void Game::playGame() {
     }
 
     if (gameBoard->getGameStatus() == DUNGEON) {
+      Space *temp = gameBoard;
       gameBoard = new Dungeon();
       gameBoard->setGameStatus(DUNGEON);
+      delete temp;
     }
 
     while (gameBoard->getGameStatus() == DUNGEON) {
