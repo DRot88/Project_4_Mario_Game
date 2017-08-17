@@ -7,11 +7,8 @@
 
 class Game {
 private:
-  // Character *marioPtr;
-  // Character *bowserPtr;
-  // Character *peachPtr;
-  // Character *dragonPtr;
   Space *gameBoard;
+  int princessHealth; // to be used as game timer
 public:
   Game();
   ~Game();
@@ -19,6 +16,8 @@ public:
   void welcomeScreen();
   void dragonMessage();
   void congratulations();
+  void lowerPrincessHealth();
+  int getPrincessHealth();
 };
 
 

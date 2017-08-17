@@ -15,11 +15,8 @@ using std::cin;
 
 
 Game::Game() {
-  // marioPtr = new Mario();
   gameBoard = new Atrium();
-//   bowserPtr = new Bowser();
-  // peachPtr = new PrincessPeach();
-//   dragonPtr = new Dragon();
+  princessHealth = 300;
 }
 
 Game::~Game() {
@@ -82,90 +79,136 @@ void Game::dragonMessage() {
 }
 
 void Game::congratulations() {
+  cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
   cout << "\nMario and Princess Peach have successfully escape the secret lair of Bowser." << endl;
-  cout << "The will be returning to Mushroom Kingdom to live happily ever after." << endl;
+  cout << "They will be returning to Mushroom Kingdom to live happily ever after." << endl;
   cout << "That is, what they would hope for.. but Bowser always returns.. Always.." << endl;
   cout << "\nCONGRATULATIONS! YOU BEAT THE GAME!" << endl << endl;
   return;
 }
 
+void Game::lowerPrincessHealth() {
+  princessHealth--;
+}
+
+int Game::getPrincessHealth() {
+  return princessHealth;
+}
+
 void Game::playGame() {
 
   welcomeScreen();
+    while (gameBoard->getGameStatus() == ATRIUM) {
+      gameBoard->printBoard();
+      if (princessHealth > 0) {
+        cout << "\nPrincess Health Remaining: " << getPrincessHealth() << endl << endl; 
+        gameBoard->displayGameOptions();
+        gameBoard->moveMario();
+        princessHealth--;
+      } else {
+        gameBoard->setGameStatus(GAME_OVER);
+      } 
+    }
 
-  while (gameBoard->getGameStatus() == ATRIUM) {
-    gameBoard->printBoard();
-    gameBoard->displayGameOptions();
-    gameBoard->moveMario();
-  }
+    if (gameBoard->getGameStatus() == LAVA) {
+      gameBoard = new LavaRoom();
+      gameBoard->setGameStatus(LAVA);
+    }
 
-  if (gameBoard->getGameStatus() == LAVA) {
-    gameBoard = new LavaRoom();
-    gameBoard->setGameStatus(LAVA);
-  }
+    while (gameBoard->getGameStatus() == LAVA) {
+      gameBoard->printBoard();
+      if (princessHealth > 0) {
+        cout << "\nPrincess Health Remaining: " << getPrincessHealth() << endl << endl; 
+        gameBoard->displayGameOptions();
+        gameBoard->moveMario();
+        princessHealth--;
+      } else {
+        gameBoard->setGameStatus(GAME_OVER);
+      } 
+    }  
 
-  while (gameBoard->getGameStatus() == LAVA) {
-    gameBoard->printBoard();
-    gameBoard->displayGameOptions();
-    gameBoard->moveMario();
-  }  
+    if (gameBoard->getGameStatus() == POISON) {
+      gameBoard = new PoisonRoom();
+      gameBoard->setGameStatus(POISON);
+    }
 
-  if (gameBoard->getGameStatus() == POISON) {
-    gameBoard = new PoisonRoom();
-    gameBoard->setGameStatus(POISON);
-  }
+    while (gameBoard->getGameStatus() == POISON) {
+      gameBoard->printBoard();
+      if (princessHealth > 0) {
+        cout << "\nPrincess Health Remaining: " << getPrincessHealth() << endl << endl; 
+        gameBoard->displayGameOptions();
+        gameBoard->moveMario();
+        princessHealth--;
+      } else {
+        gameBoard->setGameStatus(GAME_OVER);
+      } 
+    }    
 
-  while (gameBoard->getGameStatus() == POISON) {
-    gameBoard->printBoard();
-    gameBoard->displayGameOptions();
-    gameBoard->moveMario();
-  }    
+    if (gameBoard->getGameStatus() == CONFUSION) {
+      gameBoard = new ConfusionRoom();
+      gameBoard->setGameStatus(CONFUSION);
+    }
 
-  if (gameBoard->getGameStatus() == CONFUSION) {
-    gameBoard = new ConfusionRoom();
-    gameBoard->setGameStatus(CONFUSION);
-  }
+    while (gameBoard->getGameStatus() == CONFUSION) {
+      gameBoard->printBoard();
+      if (princessHealth > 0) {
+        cout << "\nPrincess Health Remaining: " << getPrincessHealth() << endl << endl; 
+        gameBoard->displayConfusedOptions();
+        gameBoard->moveMario();
+        princessHealth--;
+      } else {
+        gameBoard->setGameStatus(GAME_OVER);
+      }   
+    }   
 
-  while (gameBoard->getGameStatus() == CONFUSION) {
-    gameBoard->printBoard();
-    gameBoard->displayConfusedOptions();
-    gameBoard->moveMario();
-  }   
+    if (gameBoard->getGameStatus() == DRAGON) {
+      gameBoard = new DragonRoom();
+      gameBoard->setGameStatus(DRAGON);
+    }
+    if (princessHealth > 0) {
+      dragonMessage();
+    }
 
-  if (gameBoard->getGameStatus() == DRAGON) {
-    gameBoard = new DragonRoom();
-    gameBoard->setGameStatus(DRAGON);
-  }
+    while (gameBoard->getGameStatus() == DRAGON) {
+      gameBoard->printBoard();
+      if (princessHealth > 0) {
+        cout << "\nPrincess Health Remaining: " << getPrincessHealth() << endl << endl; 
+        gameBoard->displayGameOptions();
+        gameBoard->moveMario();
+        princessHealth--;
+      } else {
+        gameBoard->setGameStatus(GAME_OVER);
+      } 
+    }
 
-  dragonMessage();
+    if (gameBoard->getGameStatus() == DUNGEON) {
+      gameBoard = new Dungeon();
+      gameBoard->setGameStatus(DUNGEON);
+    }
 
-  while (gameBoard->getGameStatus() == DRAGON) {
-    gameBoard->printBoard();
-    gameBoard->displayGameOptions();
-    gameBoard->moveMario();
-  }
+    while (gameBoard->getGameStatus() == DUNGEON) {
+      gameBoard->printBoard();
+      if (princessHealth > 0) {
+        cout << "\nPrincess Health Remaining: " << getPrincessHealth() << endl << endl; 
+        gameBoard->displayGameOptions();
+        gameBoard->moveMario();
+        princessHealth--;
+      } else {
+        gameBoard->setGameStatus(GAME_OVER);
+      } 
+    }
 
-  if (gameBoard->getGameStatus() == DUNGEON) {
-    gameBoard = new Dungeon();
-    gameBoard->setGameStatus(DUNGEON);
-  }
+    if (gameBoard->getGameStatus() == WIN) {
+      congratulations();
+      exit(0);
+    }              
 
-  while (gameBoard->getGameStatus() == DUNGEON) {
-    gameBoard->printBoard();
-    gameBoard->displayGameOptions();
-    gameBoard->moveMario();
-  }
-
-  if (gameBoard->getGameStatus() == WIN) {
-    congratulations();
-    exit(0);
-  }              
-
-  if (gameBoard->getGameStatus() == GAME_OVER) {
-    cout << "\nPrincess Peach has met her fate and has passed away.." << endl;
-    cout << "Game Over" << endl;
-    exit(0);
-  }
+    if (gameBoard->getGameStatus() == GAME_OVER) {
+      cout << "\nMario has taken too long in the search for the Princess.";
+      cout << "\nPrincess Peach has met her fate and has passed away.." << endl;
+      cout << "Game Over" << endl << endl;
+      exit(0);
+    }
 
   return;
 }

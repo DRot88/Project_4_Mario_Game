@@ -101,6 +101,7 @@ void Dungeon::moveMario() {
       if (hasCellKey) {
         cout << "\nMario has successfully rescued the Princess!" << endl;
         princessRescued = true;
+        board[peachPtr->getRow()][peachPtr->getCol()] = '.'; // peach is now with mario;        
       } else {
         cout << "Mario needs a cell key to free Princess Peach" << endl;
         marioPtr->setRow(marioPtr->getRow() + 1);
@@ -163,9 +164,10 @@ void Dungeon::moveMario() {
       if (hasCellKey) {
         cout << "\nMario has successfully rescued the Princess!" << endl;
         princessRescued = true;
+        board[peachPtr->getRow()][peachPtr->getCol()] = '.'; // peach is now with mario;        
       } else {
         cout << "Mario needs a cell key to free Princess Peach" << endl;
-        marioPtr->setRow(marioPtr->getRow() + 1);
+        marioPtr->setCol(marioPtr->getCol() + 1);
         return;
       }
     }           
@@ -225,9 +227,10 @@ void Dungeon::moveMario() {
       if (hasCellKey) {
         cout << "\nMario has successfully rescued the Princess!" << endl;
         princessRescued = true;
+        board[peachPtr->getRow()][peachPtr->getCol()] = '.'; // peach is now with mario;        
       } else {
         cout << "Mario needs a cell key to free Princess Peach" << endl;
-        marioPtr->setRow(marioPtr->getRow() + 1);
+        marioPtr->setRow(marioPtr->getRow() - 1);
         return;
       }
     }         
@@ -281,7 +284,6 @@ void Dungeon::moveMario() {
       if (marioPtr->getRow() == rows / 2) {
         if (princessRescued) {
           gameStatus = WIN;
-          board[peachPtr->getRow()][peachPtr->getCol()] = '.'; // peach is now with mario;
           return;
         } else {
           cout << "Mario needs to first rescue the Princess!" << endl;
@@ -296,9 +298,10 @@ void Dungeon::moveMario() {
       if (hasCellKey) {
         cout << "\nMario has successfully rescued the Princess!" << endl;
         princessRescued = true;
+        board[peachPtr->getRow()][peachPtr->getCol()] = '.'; // peach is now with mario;        
       } else {
         cout << "Mario needs a cell key to free Princess Peach" << endl;
-        marioPtr->setRow(marioPtr->getRow() + 1);
+        marioPtr->setCol(marioPtr->getCol() - 1);
         return;
       }
     }    
