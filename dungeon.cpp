@@ -15,7 +15,7 @@ const char DOOR = '#'; // Door on map to be marked with '#'
 const char MARIO = 'M'; // Mario's position to be marked with 'M'
 const char BOWSER = 'B'; // Bowser's position to be marked with 'B'
 const char PEACH = 'P'; // Bowser's position to be marked with 'B'
-const char PRISON = '#'; // Prison Doors for Peach to be trapped it
+const char PRISON = '$'; // Prison Doors for Peach to be trapped it
 const char KEY = 'K'; // Key from defeating bowser
 
 Dungeon::Dungeon() {
@@ -24,6 +24,7 @@ Dungeon::Dungeon() {
   marioPtr->setCol(cols/2);
   marioPtr->setRow(0);
   hasCellKey = false;
+  princessRescued = false;
   createRoom();
 }
 
@@ -72,9 +73,6 @@ void Dungeon::createRoom() {
   //set Peach's position
   board[peachPtr->getRow()][peachPtr->getCol()] = PEACH;
 
-
-
-
   return;
 }
 
@@ -91,10 +89,24 @@ void Dungeon::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getRow() == 0) {
+      if (marioPtr->getCol() == cols / 2) {
+      cout << "The door has locked behind him, no turning back!";
+      }
       cout << "Mario walked into a wall!";
       return;
     }    
     marioPtr->setRow(marioPtr->getRow() - 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == PRISON) { // if prison door, need key, if has key, open door
+      if (hasCellKey) {
+        cout << "\nMario has successfully rescued the Princess!" << endl;
+        princessRescued = true;
+      } else {
+        cout << "Mario needs a cell key to free Princess Peach" << endl;
+        marioPtr->setRow(marioPtr->getRow() + 1);
+        return;
+      }
+    }         
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == BOWSER) { // fight bowser!
       Battle finalFight;
@@ -142,16 +154,21 @@ void Dungeon::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == 0) {
-      if (marioPtr->getRow() == rows/2 ) {
-        cout << "Mario has moved into the Confusion !";
-        gameStatus = CONFUSION;
-        return;
-      } else {
         cout << "Mario walked into a wall!";
         return;
-      }
     }    
     marioPtr->setCol(marioPtr->getCol() - 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == PRISON) { // if prison door, need key, if has key, open door
+      if (hasCellKey) {
+        cout << "\nMario has successfully rescued the Princess!" << endl;
+        princessRescued = true;
+      } else {
+        cout << "Mario needs a cell key to free Princess Peach" << endl;
+        marioPtr->setRow(marioPtr->getRow() + 1);
+        return;
+      }
+    }           
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == BOWSER) { // fight bowser!
       Battle finalFight;
@@ -204,6 +221,17 @@ void Dungeon::moveMario() {
     }
     marioPtr->setRow(marioPtr->getRow() + 1); // set new position for mario
 
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == PRISON) { // if prison door, need key, if has key, open door
+      if (hasCellKey) {
+        cout << "\nMario has successfully rescued the Princess!" << endl;
+        princessRescued = true;
+      } else {
+        cout << "Mario needs a cell key to free Princess Peach" << endl;
+        marioPtr->setRow(marioPtr->getRow() + 1);
+        return;
+      }
+    }         
+
     if (board[marioPtr->getRow()][marioPtr->getCol()] == BOWSER) { // fight bowser!
       Battle finalFight;
       finalFight.setFighters(marioPtr, bowserPtr);
@@ -250,13 +278,30 @@ void Dungeon::moveMario() {
     int lastRow = marioPtr->getRow(); // get marios last row 
     int lastCol = marioPtr->getCol(); // get marios last column
     if (marioPtr->getCol() == cols - 1) {
-      if (marioPtr->getRow() == rows - 1) {
-      cout << "The door has locked behind him, no turning back!";
+      if (marioPtr->getRow() == rows / 2) {
+        if (princessRescued) {
+          gameStatus = WIN;
+          board[peachPtr->getRow()][peachPtr->getCol()] = '.'; // peach is now with mario;
+          return;
+        } else {
+          cout << "Mario needs to first rescue the Princess!" << endl;
+        }
       }
       cout << "Mario walked into a wall!";
       return;
     }
     marioPtr->setCol(marioPtr->getCol() + 1); // set new position for mario
+
+    if (board[marioPtr->getRow()][marioPtr->getCol()] == PRISON) { // if prison door, need key, if has key, open door
+      if (hasCellKey) {
+        cout << "\nMario has successfully rescued the Princess!" << endl;
+        princessRescued = true;
+      } else {
+        cout << "Mario needs a cell key to free Princess Peach" << endl;
+        marioPtr->setRow(marioPtr->getRow() + 1);
+        return;
+      }
+    }    
 
     if (board[marioPtr->getRow()][marioPtr->getCol()] == BOWSER) { // fight bowser!
       Battle finalFight;

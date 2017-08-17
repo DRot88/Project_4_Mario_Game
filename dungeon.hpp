@@ -12,6 +12,7 @@ private:
   Bowser *bowserPtr;
   PrincessPeach *peachPtr;
   bool hasCellKey;
+  bool princessRescued;
 public:
   Dungeon();
   ~Dungeon();

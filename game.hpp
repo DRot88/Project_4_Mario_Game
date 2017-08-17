@@ -18,6 +18,7 @@ public:
   void playGame();
   void welcomeScreen();
   void dragonMessage();
+  void congratulations();
 };
 
 

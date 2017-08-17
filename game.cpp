@@ -55,30 +55,38 @@ void Game::welcomeScreen() {
 }
 
 void Game::dragonMessage() {
-cout << endl << endl << endl;
-cout << "          <>=======()" << endl;
-cout << "           (/\\___   /|\\          ()==========<>_ " << endl;
-cout << "                 \\_/ | \\        //|\\   ______/ \\)" << endl;
-cout << "                   \\_|  \\      // | \\_/" << endl;
-cout << "                     \\|\\/|\\_   //  /\\/" << endl;
-cout << "                      (oo)\\ \\_//  /" << endl;
-cout << "                     //_/\\_\\/ /  |" << endl;
-cout << "                    @@/  |=\\  \\  |" << endl;
-cout << "                        \\_=\\_ \\ |" << endl;
-cout << "                           \\==\\ \\|\\" << endl;
-cout << "                        __(\\===\\(  )\\" << endl;
-cout << "                       (((~) __(_/   |" << endl;
-cout << "                            (((~) \\  /" << endl;
-cout << "                            ______/ /" << endl;
-cout << "                            '------'" << endl << endl;
-cout << "There is an evil dragon gaurding this room. You must find the flute" << endl;
-cout << "to put the dragon to sleep. Once you play the flute, you can sneak past the dragon." << endl;
-cout << "\nPress Enter to Continue..";
+  cout << endl << endl << endl;
+  cout << "          <>=======()" << endl;
+  cout << "           (/\\___   /|\\          ()==========<>_ " << endl;
+  cout << "                 \\_/ | \\        //|\\   ______/ \\)" << endl;
+  cout << "                   \\_|  \\      // | \\_/" << endl;
+  cout << "                     \\|\\/|\\_   //  /\\/" << endl;
+  cout << "                      (oo)\\ \\_//  /" << endl;
+  cout << "                     //_/\\_\\/ /  |" << endl;
+  cout << "                    @@/  |=\\  \\  |" << endl;
+  cout << "                        \\_=\\_ \\ |" << endl;
+  cout << "                           \\==\\ \\|\\" << endl;
+  cout << "                        __(\\===\\(  )\\" << endl;
+  cout << "                       (((~) __(_/   |" << endl;
+  cout << "                            (((~) \\  /" << endl;
+  cout << "                            ______/ /" << endl;
+  cout << "                            '------'" << endl << endl;
+  cout << "There is an evil dragon gaurding this room. You must find the flute" << endl;
+  cout << "to put the dragon to sleep. Once you play the flute, you can sneak past the dragon." << endl;
+  cout << "\nPress Enter to Continue..";
 
-string temp;
-getline(cin, temp);
-std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+  string temp;
+  getline(cin, temp);
+  std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+  return;
+}
 
+void Game::congratulations() {
+  cout << "\nMario and Princess Peach have successfully escape the secret lair of Bowser." << endl;
+  cout << "The will be returning to Mushroom Kingdom to live happily ever after." << endl;
+  cout << "That is, what they would hope for.. but Bowser always returns.. Always.." << endl;
+  cout << "\nCONGRATULATIONS! YOU BEAT THE GAME!" << endl << endl;
+  return;
 }
 
 void Game::playGame() {
@@ -146,15 +154,17 @@ void Game::playGame() {
     gameBoard->printBoard();
     gameBoard->displayGameOptions();
     gameBoard->moveMario();
-  }              
+  }
 
   if (gameBoard->getGameStatus() == WIN) {
-    cout << "\nCONGRATULATIONS!! YOU SAVED PRINCESS PEACH!" << endl;
-  }
+    congratulations();
+    exit(0);
+  }              
 
   if (gameBoard->getGameStatus() == GAME_OVER) {
     cout << "\nPrincess Peach has met her fate and has passed away.." << endl;
     cout << "Game Over" << endl;
+    exit(0);
   }
 
   return;
